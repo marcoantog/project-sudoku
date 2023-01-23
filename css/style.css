@@ -22,24 +22,43 @@ h1 {
 #game-board {
     display: flex;
     width: 390px;
-    height: 390px;
+    height: 375px;
     margin-left: auto;
     margin-right: auto;
     flex-wrap: wrap;
-    justify-content: space-around;
     padding-top: 10%;
 }
 
 .square {
     width: 40px;
     height: 40px;
-    border: 1px black solid;
+    border: 1px rgba(119, 116, 116, 0.434) solid;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#number {
     font-size: 25px;
     font-weight: bold;
+
+}
+
+
+.hidden {
+    border: 1px rgba(119, 116, 116, 0.434) solid;
+    content-visibility: hidden;
+}
+
+.right {
+    border-right: 3px black solid;
+}
+
+.top {
+    border-top: 3px black solid;
+}
+
+.left {
+    border-left: 3px black solid;
+}
+
+.bottom {
+    border-bottom: 3px black solid;
 }

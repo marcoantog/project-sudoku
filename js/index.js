@@ -8,7 +8,8 @@ btn.addEventListener("click", () => {
   const game = new Game();
 
   game.genGame(gameBoard);
-  game.positionNumbers();
   game.includeNumbers(gameBoard);
-  console.log(gameBoard);
+  game.randomDiv(gameBoard);
+
+  game.styleBoard(gameBoard);
 });
