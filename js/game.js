@@ -21,8 +21,10 @@ class Game {
         6, 4, 2, 5, 8, 9, 1, 3, 7,
       ],
     };
-    this.numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.selectNumber = null;
+    this.hiddenElements = [];
+    this.counter = 0;
   }
 
   genGame(board) {
@@ -43,9 +45,12 @@ class Game {
 
   randomDiv(board) {
     for (let i = 0; i < 46; i++) {
-      board.children[Math.floor(Math.random() * 35 + i)].classList.add(
-        "hidden"
-      );
+      let randomNum = Math.floor(Math.random() * 35 + i);
+      if (!this.hiddenElements.includes(randomNum)) {
+        board.children[randomNum].classList.add("hidden");
+        this.hiddenElements.push(randomNum);
+      }
+      console.log(this.hiddenElements);
     }
   }
 
@@ -141,7 +146,7 @@ class Game {
     }
   }
 
-  testValue(board) {
+  testValue(board, text) {
     for (let i = 0; i < board.children.length; i++) {
       board.children[i].addEventListener("click", () => {
         if (
@@ -151,15 +156,33 @@ class Game {
         ) {
           board.children[i].classList.remove("hidden");
           board.children[i].classList.add("right-value");
+          this.hiddenElements.pop();
+          console.log(this.hiddenElements.length);
         } else if (
           this.selectNumber !== board.children[i].innerHTML &&
           board.children[i].classList[1] === "hidden" &&
           this.selectNumber !== null
         ) {
           board.children[i].classList.add("wrong-value");
-          //adicionar contador de erros aqui
+          this.errorCounter(text);
         }
+        this.winCheck();
       });
+    }
+  }
+
+  errorCounter(text) {
+    let counter = `Miss: ${this.counter}`;
+    text.innerText = counter;
+    text.classList.add("counter");
+    this.counter += 1;
+  }
+
+  winCheck() {
+    if (this.hiddenElements.length === 0) {
+      setTimeout(() => {
+        window.alert("Well done! You are SMART 😎");
+      }, 400);
     }
   }
 }

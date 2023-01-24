@@ -102,10 +102,6 @@ h1 {
     background-color: #4848f535;
 }
 
-.board-clicked {
-    background-color: #4848f55f;
-}
-
 .right-value {
     color: black;
     transition: color 3s;
@@ -119,4 +115,17 @@ h1 {
 .wrong-value:hover {
     background-color: red;
     transition: none;
+}
+
+.board-clicked {
+    background-color: #4848f55f;
+}
+
+.counter {
+    position: absolute;
+    padding-top: 7.5%;
+    padding-left: 54%;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-style: oblique;
 }
