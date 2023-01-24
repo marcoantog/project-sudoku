@@ -22,14 +22,15 @@ class Game {
       ],
     };
     this.numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.selectNumber = null;
   }
 
-  genGame(gameBoard) {
+  genGame(board) {
     for (let i = 0; i < this.boardSize; i++) {
       const square = document.createElement("div");
       square.classList.add("square");
 
-      gameBoard.appendChild(square);
+      board.appendChild(square);
     }
   }
 
@@ -97,25 +98,68 @@ class Game {
     }
   }
 
-  selectNumbers(menu) {
+  selectNumbers(menu, board) {
     for (let i = 0; i < menu.children.length; i++) {
       menu.children[i].addEventListener("click", () => {
-        localStorage.setItem("selectedNumber", menu.children[i].innerText);
+        this.selectNumber = menu.children[i].innerText;
         menu.children[i].classList.add("number-clicked");
         for (let j = 0; j < menu.children.length; j++) {
           if (menu.children[j].innerText !== menu.children[i].innerText) {
             menu.children[j].classList.remove("number-clicked");
           }
         }
+        for (let h = 0; h < board.children.length; h++) {
+          board.children[h].classList.remove("wrong-value");
+        }
       });
       menu.children[i].addEventListener("mouseover", () => {
         menu.children[i].classList.add("number-over");
       });
+
       menu.children[i].addEventListener("mouseout", () => {
         menu.children[i].classList.remove("number-over");
       });
     }
   }
 
-  boardOver() {}
+  boardInteraction(board) {
+    for (let i = 0; i < board.children.length; i++) {
+      board.children[i].addEventListener("click", () => {
+        board.children[i].classList.add("board-clicked");
+        for (let j = 0; j < board.children.length; j++) {
+          if (board.children[j] !== board.children[i]) {
+            board.children[j].classList.remove("board-clicked");
+          }
+        }
+      });
+      board.children[i].addEventListener("mouseover", () => {
+        board.children[i].classList.add("board-over");
+      });
+      board.children[i].addEventListener("mouseout", () => {
+        board.children[i].classList.remove("board-over");
+      });
+    }
+  }
+
+  testValue(board) {
+    for (let i = 0; i < board.children.length; i++) {
+      board.children[i].addEventListener("click", () => {
+        if (
+          this.selectNumber === board.children[i].innerHTML &&
+          board.children[i].classList[1] === "hidden" &&
+          this.selectNumber !== null
+        ) {
+          board.children[i].classList.remove("hidden");
+          board.children[i].classList.add("right-value");
+        } else if (
+          this.selectNumber !== board.children[i].innerHTML &&
+          board.children[i].classList[1] === "hidden" &&
+          this.selectNumber !== null
+        ) {
+          board.children[i].classList.add("wrong-value");
+          //adicionar contador de erros aqui
+        }
+      });
+    }
+  }
 }

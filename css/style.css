@@ -37,7 +37,7 @@ h1 {
 .square {
     width: 40px;
     height: 40px;
-    border: 1px rgba(119, 116, 116, 0.434) solid;
+    border: 1px #7774746f solid;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,8 +47,9 @@ h1 {
 
 
 .hidden {
-    border: 1px rgba(119, 116, 116, 0.434) solid;
+    border: 1px #7774746f solid;
     content-visibility: hidden;
+    color: #059d05;
 }
 
 .right {
@@ -77,8 +78,8 @@ h1 {
 .square-menu {
     width: 40px;
     height: 40px;
-    background-color: rgba(216, 211, 211, 0.127);
-    color: rgba(69, 69, 248, 0.614);
+    background-color: #d8d3d320;
+    color: #4545f89d;
     font-size: 25px;
     font-weight: bold;
     justify-content: space-between;
@@ -88,11 +89,34 @@ h1 {
 }
 
 .number-over {
-    border: 1px rgb(69, 69, 248) solid;
-    color: rgb(21, 21, 246);
+    border: 1px #4545f8 solid;
+    color: #1515f6;
 }
 
 .number-clicked {
-    background-color: rgba(189, 188, 186, 0.378);
-    color: rgb(21, 21, 246);
+    background-color: #bdbcba60;
+    color: #1515f6;
+}
+
+.board-over {
+    background-color: #4848f535;
+}
+
+.board-clicked {
+    background-color: #4848f55f;
+}
+
+.right-value {
+    color: black;
+    transition: color 3s;
+}
+
+.wrong-value {
+    background-color: white;
+    transition: 1s;
+}
+
+.wrong-value:hover {
+    background-color: red;
+    transition: none;
 }

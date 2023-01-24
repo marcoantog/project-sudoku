@@ -20,5 +20,9 @@ btn.addEventListener("click", () => {
   // criando menu de numeros
   game.genNumberMenu(numbersMenu);
   game.getNumbers(numbersMenu);
-  game.selectNumbers(numbersMenu);
+  game.selectNumbers(numbersMenu, gameBoard);
+
+  // interações tabuleiro
+  game.boardInteraction(gameBoard);
+  game.testValue(gameBoard);
 });
