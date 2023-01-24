@@ -21,6 +21,7 @@ class Game {
         6, 4, 2, 5, 8, 9, 1, 3, 7,
       ],
     };
+    this.numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
 
   genGame(gameBoard) {
@@ -76,8 +77,45 @@ class Game {
       board.children[i].classList.add("top");
     }
 
-    for (let i = 72; i <= 81; i++) {
+    for (let i = 72; i <= 80; i++) {
       board.children[i].classList.add("bottom");
     }
   }
+
+  genNumberMenu(menu) {
+    for (let i = 0; i < this.numbers.length; i++) {
+      const square = document.createElement("div");
+      square.classList.add("square-menu");
+
+      menu.appendChild(square);
+    }
+  }
+
+  getNumbers(menu) {
+    for (let i = 0; i < menu.children.length; i++) {
+      menu.children[i].innerText = `${this.numbers[i]}`;
+    }
+  }
+
+  selectNumbers(menu) {
+    for (let i = 0; i < menu.children.length; i++) {
+      menu.children[i].addEventListener("click", () => {
+        localStorage.setItem("selectedNumber", menu.children[i].innerText);
+        menu.children[i].classList.add("number-clicked");
+        for (let j = 0; j < menu.children.length; j++) {
+          if (menu.children[j].innerText !== menu.children[i].innerText) {
+            menu.children[j].classList.remove("number-clicked");
+          }
+        }
+      });
+      menu.children[i].addEventListener("mouseover", () => {
+        menu.children[i].classList.add("number-over");
+      });
+      menu.children[i].addEventListener("mouseout", () => {
+        menu.children[i].classList.remove("number-over");
+      });
+    }
+  }
+
+  boardOver() {}
 }
