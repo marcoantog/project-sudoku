@@ -91,7 +91,7 @@ h1 {
 .hidden {
     border: 1px #7774746f solid;
     /* color: transparent; */
-    /* content-visibility: hidden; */
+    content-visibility: hidden;
     color: #059d05;
 }
 
