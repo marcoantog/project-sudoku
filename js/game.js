@@ -20,6 +20,12 @@ class Game {
         2, 9, 3, 7, 1, 6, 1, 3, 5, 6, 7, 2, 4, 8, 9, 9, 7, 8, 3, 4, 1, 2, 6, 5,
         6, 4, 2, 5, 8, 9, 1, 3, 7,
       ],
+      4: [
+        2, 5, 6, 8, 3, 7, 1, 4, 9, 7, 1, 9, 4, 2, 5, 8, 3, 6, 8, 4, 3, 6, 1, 9,
+        2, 5, 7, 4, 6, 7, 1, 5, 8, 9, 2, 3, 3, 9, 2, 7, 6, 4, 5, 1, 8, 5, 8, 1,
+        3, 9, 2, 6, 7, 4, 1, 7, 8, 2, 4, 6, 3, 9, 5, 6, 3, 5, 9, 7, 1, 4, 8, 2,
+        9, 2, 4, 5, 8, 3, 7, 6, 1,
+      ],
     };
     this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.selectNumber = null;
@@ -37,7 +43,7 @@ class Game {
   }
 
   includeNumbers(board) {
-    let randomSudoku = this.sudoku[Math.floor(Math.random() * 3) + 1];
+    let randomSudoku = this.sudoku[Math.floor(Math.random() * 4) + 1];
     for (let i = 0; i < board.children.length; i++) {
       board.children[i].innerText = `${randomSudoku[i]}`;
     }
@@ -50,7 +56,6 @@ class Game {
         board.children[randomNum].classList.add("hidden");
         this.hiddenElements.push(randomNum);
       }
-      console.log(this.hiddenElements);
     }
   }
 
@@ -157,7 +162,6 @@ class Game {
           board.children[i].classList.remove("hidden");
           board.children[i].classList.add("right-value");
           this.hiddenElements.pop();
-          console.log(this.hiddenElements.length);
         } else if (
           this.selectNumber !== board.children[i].innerHTML &&
           board.children[i].classList[1] === "hidden" &&
@@ -181,7 +185,11 @@ class Game {
   winCheck() {
     if (this.hiddenElements.length === 0) {
       setTimeout(() => {
-        window.alert("Well done! You are SMART 😎");
+        if (this.counter > 1) {
+          window.alert("Congratulations! Keep improving");
+        } else {
+          window.alert("Well done! You are SMART 😎");
+        }
       }, 400);
     }
   }

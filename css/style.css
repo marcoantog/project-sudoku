@@ -3,21 +3,62 @@
 }
 
 h1 {
-    text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.typewriter {
+    padding-top: 13%;
+    width: 22%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* h1 typewriter effect from: https://css-tricks.com/snippets/css/typewriter-effect/ */
+.typewriter h1 {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+        typing 3.3s steps(40, end),
+        blink-caret .55s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+/* end h1 code */
+
 .btn-div {
     display: flex;
-    padding: 20%;
+    padding: 7%;
 }
 
 #btn-start {
     margin-left: auto;
     margin-right: auto;
-    padding: 20px 60px 20px 60px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: larger;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 .hide {
@@ -43,12 +84,14 @@ h1 {
     justify-content: center;
     font-size: 25px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 
 .hidden {
     border: 1px #7774746f solid;
-    content-visibility: hidden;
+    /* color: transparent; */
+    /* content-visibility: hidden; */
     color: #059d05;
 }
 
@@ -86,6 +129,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .number-over {
@@ -129,3 +173,75 @@ h1 {
     font-weight: bold;
     font-style: oblique;
 }
+
+/* button animation from: https://dev.to/webdeasy/top-20-css-buttons-animations-f41 */
+
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* end button code */
