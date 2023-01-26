@@ -13,7 +13,15 @@ btn.addEventListener("click", () => {
   game.genGame(gameBoard);
   game.includeNumbers(gameBoard);
   // criando lugares em branco
-  game.randomDiv(gameBoard);
+
+  function getRadioValue() {
+    let ele = document.getElementsByName("difficulty");
+
+    for (i = 0; i < ele.length; i++) {
+      if (ele[i].checked) game.randomDiv(gameBoard, ele[i].value);
+    }
+  }
+  getRadioValue();
 
   // estilizando
   game.styleBoard(gameBoard);

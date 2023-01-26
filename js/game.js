@@ -30,7 +30,8 @@ class Game {
     this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.selectNumber = null;
     this.hiddenElements = [];
-    this.counter = 0;
+    this.counter = 3;
+    this.value = null;
   }
 
   genGame(board) {
@@ -49,14 +50,34 @@ class Game {
     }
   }
 
-  randomDiv(board) {
-    for (let i = 0; i < 46; i++) {
-      let randomNum = Math.floor(Math.random() * 35 + i);
-      if (!this.hiddenElements.includes(randomNum)) {
-        board.children[randomNum].classList.add("hidden");
-        this.hiddenElements.push(randomNum);
+  randomDiv(board, value) {
+    if (value === "Easy") {
+      for (let i = 0; i < 23; i++) {
+        let randomNum = Math.floor(Math.random() * 58 + i);
+        if (!this.hiddenElements.includes(randomNum)) {
+          board.children[randomNum].classList.add("hidden");
+          this.hiddenElements.push(randomNum);
+        }
+      }
+    } else if (value === "Normal") {
+      for (let i = 0; i < 46; i++) {
+        let randomNum = Math.floor(Math.random() * 35 + i);
+        if (!this.hiddenElements.includes(randomNum)) {
+          board.children[randomNum].classList.add("hidden");
+          this.hiddenElements.push(randomNum);
+        }
+      }
+    } else if (value === "Hard") {
+      for (let i = 0; i < 70; i++) {
+        let randomNum = Math.floor(Math.random() * 11 + i);
+        if (!this.hiddenElements.includes(randomNum)) {
+          board.children[randomNum].classList.add("hidden");
+          this.hiddenElements.push(randomNum);
+          this.hardLife();
+        }
       }
     }
+    return (this.value = value);
   }
 
   styleBoard(board) {
@@ -176,10 +197,29 @@ class Game {
   }
 
   errorCounter(text) {
-    let counter = `Miss: ${this.counter}`;
-    text.innerText = counter;
-    text.classList.add("counter");
-    this.counter += 1;
+    if (this.value === "Normal") {
+      let counter = `Miss: ${this.counter - 3}`;
+      text.innerText = counter;
+      text.classList.add("counter");
+      this.counter += 1;
+    }
+    if (this.value === "Hard") {
+      let counter = `Lifes: ${this.counter}`;
+      text.innerText = counter;
+      text.classList.add("lifes");
+      this.counter -= 1;
+      console.log(this.counter);
+      this.hardLife();
+    }
+  }
+
+  hardLife() {
+    if (this.counter === -1) {
+      setTimeout(() => {
+        window.alert("You lost! 😭");
+        location.reload();
+      }, 400);
+    }
   }
 
   winCheck() {
