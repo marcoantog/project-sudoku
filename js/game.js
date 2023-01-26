@@ -97,7 +97,6 @@ class Game {
         if (!this.hiddenElements.includes(randomNum)) {
           board.children[randomNum].classList.add("hidden");
           this.hiddenElements.push(randomNum);
-          this.hardLife();
         }
       }
     }
@@ -226,6 +225,7 @@ class Game {
       text.innerText = counter;
       text.classList.add("counter");
       this.counter += 1;
+      this.normalLife();
     }
     if (this.value === "Hard") {
       let counter = `Lifes: ${this.counter}`;
@@ -237,12 +237,27 @@ class Game {
     }
   }
 
+  normalLife() {
+    if (this.counter === 19) {
+      setTimeout(() => {
+        window.alert("I know you can do better!");
+      }, 100);
+    } else if (this.counter === 34) {
+      setTimeout(() => {
+        window.alert("Are we trying?! 🤔");
+      }, 100);
+    } else if (this.counter === 54) {
+      window.alert("Let's try again! Shall we? 🥲");
+      location.reload();
+    }
+  }
+
   hardLife() {
     if (this.counter === -1) {
       setTimeout(() => {
         window.alert("You lost! 😭");
         location.reload();
-      }, 400);
+      }, 100);
     }
   }
 
