@@ -1,6 +1,8 @@
 # Sudoku project! ⭐
 Bem vindo ao meu primeiro projeto do **bootcamp** de **webdev** da *Ironhack*. Aqui você encontrará o incrível jogo SUDOKU 👏🏻. Sintam-se em casa para experenciar e apreciar este belo jogo.
+
 Link para jogar: https://marcoantog.github.io/project-sudoku/
+Link da apresentação: https://slides.com/d/Y1Dk3fQ/live
 
 ## Infos sobre o jogo:
 Para aqueles que não tem familiaridade com este jogo basta completar as **linhas, colunas e quadrantes (3x3)** com os números de 1 a 9, a dificuldade do jogo consiste em realizar este feito **sem repetição**, ou seja, você deverá ficar atento a todas as posições comentadas anteriormente na hora de inserir os valores.
